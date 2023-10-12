@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Cousine:700|Cousine:400');
+
+:root {
+  $text: #0f0e10;
+  $background: #efeff1;
+  $primary: #343239;
+  $secondary: #e2e1e5;
+  $accent: #7a7584;
+}
+
+body {
+  font-family: 'Cousine';
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Cousine';
+  font-weight: 700;
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {font-size: 5.652rem; /* 90.4px */}
+
+h2 {font-size: 3.997rem; /* 64px */}
+
+h3 {font-size: 2.827rem; /* 45.28px */}
+
+h4 {font-size: 1.999rem; /* 32px */}
+
+h5 {font-size: 1.414rem; /* 22.56px */}
+
+small {font-size: 0.707rem; /* 11.36px */}
