@@ -1,15 +1,20 @@
-import { getCurrentTemp } from './weatherApi'
+import { getDayInfo, getForecastInfo } from "./loadData";
 
 export default function dom() {
-  const locationInput = document.getElementById("search-location");
-  const locationForm = document.getElementById("form");
-  const tempDisplay = document.getElementById("temp-display")
+  const searchBox = document.getElementById("search-location");
 
-  locationForm.addEventListener("submit", (e) => {
-    e.preventDefault()
-    const location = locationInput.value
+  let units = "C";
+  let dayInfo = getDayInfo(units, true);
+  let forecastInfo = getForecastInfo(units, true);
 
-    tempDisplay.innerText = getCurrentTemp(location, "temp_c")
-    console.log(getCurrentTemp(location, null))
-  })
+  console.log(forecastInfo);
+  console.log(dayInfo);
+  searchBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      dayInfo = getDayInfo(units);
+      forecastInfo = getForecastInfo(units);
+      console.log(forecastInfo);
+      console.log(dayInfo);
+    }
+  });
 }
