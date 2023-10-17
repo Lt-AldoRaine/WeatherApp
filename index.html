@@ -1,26 +1,39 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TheWeather</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TheWeather</title>
-</head>
+  <body>
+    <nav>
+      <div class="search-box" id="search-box">
+        <input
+          type="text"
+          name="location"
+          class="search-location"
+          id="search-location"
+          placeholder="London"
+        />
+        <button class="search" id="search" type="button"></button>
+      </div>
+      <div class="temp-toggle-container">
+        <div class="toggle-temp" id="toggle-temp">C</div>
+      </div>
+    </nav>
 
-<body>
-  <nav>
-    <form action="POST" class="form" id="form">
-      <label for="location">Search Location</label>
-      <input type="text" name="location" class="search-location" id="search-location" placeholder="London">
-      <button class="search" id="search" type="submit">Search</button>
-    </form>
-  </nav>
-
-  <main>
-    <div class="temp-display" id="temp-display"></div>
-  </main>
-  <script type="module" src="/main.js"></script>
-</body>
-
+    <main>
+      <div class="weather-data current" id="current-data">
+        <div class="location-container">
+          <h2 id="location-name"></h2>
+        </div>
+        <img class="current-condition" id="current-condition" />
+        <div class="current-temp" id="current-temp"></div>
+      </div>
+      <div class="weather-data forecast" id="forecast-data"></div>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
