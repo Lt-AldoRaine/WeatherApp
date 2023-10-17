@@ -28,15 +28,21 @@ export async function getDayInfo(units, initialLoad = false) {
   const url = getUrl(initialLoad);
 
   try {
-    const currentData = await weather.getCurrentData(url);
+    const currentData = await weather.getWeatherData(url);
 
     const currentDayInfo = {
-      condition: currentData.condition.text,
-      condIcon: currentData.condition.icon,
-      temp: units === "C" ? currentData.temp_c : currentData.temp_f,
-      feelsLike: currentData.feelslike_c,
-      humidity: currentData.humidity,
-      windSpeed: currentData.wind_kph,
+      city: currentData.location.name,
+      region: currentData.location.region,
+      country: currentData.location.country,
+      condition: currentData.current.condition.text,
+      condIcon: currentData.current.condition.icon,
+      temp:
+        units === "C" ? currentData.current.temp_c : currentData.current.temp_f,
+      feelsLike: currentData.current.feelslike_c,
+      humidity: currentData.current.humidity,
+      windSpeed: currentData.current.wind_kph,
+      precipChance:
+        currentData.forecast.forecastday[0].day.daily_chance_of_rain,
     };
 
     return currentDayInfo;
@@ -49,9 +55,8 @@ export async function getForecastInfo(units, initialLoad = false) {
   const url = getUrl(initialLoad);
 
   try {
-    const forecastData = await weather.getForecastData(url);
-
-    const days = forecastData.forecastday;
+    const forecastData = await weather.getWeatherData(url);
+    const days = forecastData.forecast.forecastday;
     let forecastInfo = [];
 
     for (let i = 0; i < days.length; i++) {
@@ -74,9 +79,8 @@ export async function getForecastInfo(units, initialLoad = false) {
       };
 
       forecastInfo.push(dayInfo);
+      return forecastInfo.sort((a, b) => a.dayNum - b.dayNum);
     }
-
-    return forecastInfo.sort((a, b) => a.dayNum - b.dayNum);
   } catch (err) {
     console.error(err);
   }
