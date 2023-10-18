@@ -8,10 +8,12 @@ export default function dom() {
   let units = "C";
 
   dayDisplay(units, true);
+  forecastDisplay(units, true);
 
   searchBox.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       dayDisplay(units);
+      forecastDisplay(units);
     }
   });
 
@@ -24,5 +26,6 @@ export default function dom() {
       units = "C";
     }
     dayDisplay(units);
+    forecastDisplay(units);
   });
 }
