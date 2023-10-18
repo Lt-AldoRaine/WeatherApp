@@ -10,7 +10,6 @@ export const getFormInput = () => {
     const region = match[2] ? match[2].trim() : "";
     const formattedLocation = region ? `${city}, ${region}` : city;
 
-    console.log(formattedLocation);
     return formattedLocation;
   } else {
     console.log("Invalid input");
@@ -26,7 +25,6 @@ export function getRequestUrl(location) {
 
 export async function getWeatherData(url) {
   try {
-    console.log(url);
     const response = await fetch(url);
     const weatherData = await response.json();
 
