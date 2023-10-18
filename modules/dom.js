@@ -1,20 +1,28 @@
-import { getDayInfo, getForecastInfo } from "./loadData";
+import dayDisplay from "./dayDataDisplay";
+import forecastDisplay from "./forecastDataDisplay";
 
 export default function dom() {
   const searchBox = document.getElementById("search-location");
+  const tempToggle = document.getElementById("toggle-temp");
 
   let units = "C";
-  let dayInfo = getDayInfo(units, true);
-  let forecastInfo = getForecastInfo(units, true);
 
-  console.log(forecastInfo);
-  console.log(dayInfo);
+  dayDisplay(units, true);
+
   searchBox.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      dayInfo = getDayInfo(units);
-      forecastInfo = getForecastInfo(units);
-      console.log(forecastInfo);
-      console.log(dayInfo);
+      dayDisplay(units);
     }
+  });
+
+  tempToggle.addEventListener("click", () => {
+    if (tempToggle.innerText === "C") {
+      tempToggle.innerText = "F";
+      units = "F";
+    } else {
+      tempToggle.innerText = "C";
+      units = "C";
+    }
+    dayDisplay(units);
   });
 }
