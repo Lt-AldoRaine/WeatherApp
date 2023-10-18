@@ -1,10 +1,24 @@
 @import url("https://fonts.googleapis.com/css?family=Cousine:700|Cousine:400");
 
-$text: #deeef7;
+$text: #d4effc;
 $background: #03090c;
-$primary: #114a6b;
-$secondary: #0e2a39;
-$accent: #429dd1;
+$primary: #0a74a9;
+$secondary: #032435;
+$accent: #a64556;
+$breakpoints: (
+  tablet: 768px,
+  phone: 471px,
+);
+
+@mixin breakpoint($breakpoint, $direction) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $direction == max {
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  }
+}
 
 body {
   font-family: "Cousine";
@@ -13,10 +27,12 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background-color: $background;
   background-image: url("./img/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  @include breakpoint(tablet, max) {
+    background-size: cover;
+  }
 }
 
 h1,
@@ -29,31 +45,11 @@ h5 {
 }
 
 html {
-  font-size: 100%;
+  font-size: 1.4vh;
 } /* 16px */
-
-h1 {
-  font-size: 5.652rem; /* 90.4px */
-}
 
 h2 {
   font-size: 3.997rem; /* 64px */
-}
-
-h3 {
-  font-size: 2.827rem; /* 45.28px */
-}
-
-h4 {
-  font-size: 1.999rem; /* 32px */
-}
-
-h5 {
-  font-size: 1.414rem; /* 22.56px */
-}
-
-small {
-  font-size: 0.707rem; /* 11.36px */
 }
 
 nav {
@@ -62,6 +58,7 @@ nav {
   width: 100%;
   align-items: center;
   background: rgba($background, 0.75);
+  backdrop-filter: blur(16px);
 
   .search-box,
   .temp-toggle-container {
@@ -83,46 +80,35 @@ nav {
       color: $text;
       padding: 5px;
       background-color: transparent;
-      border: solid 4px $accent;
+      border: solid 2px $primary;
       border-radius: 18px;
 
       &:focus {
         outline: none;
-        background-color: rgba($background, 0.8);
+        background-color: rgba($background, 0.6);
       }
-    }
-
-    button {
-      height: 100%;
-      width: 30px;
-      background-color: transparent;
-      border: none;
-      background-image: url("./img/search-icon.svg");
-      object-fit: cover;
-      background-repeat: no-repeat;
     }
   }
 
   .temp-toggle-container {
     margin-left: auto;
-    height: 40%;
+    height: auto;
     width: fit-content;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
 
     .toggle-temp {
-      height: 60px;
-      width: 60px;
+      height: 1em;
+      width: 1em;
       padding: 5px;
-      color: $text;
+      color: $accent;
       font-size: 4rem;
       font-weight: bold;
       text-align: center;
       background-color: transparent;
-      border: solid 4px $accent;
-      border-radius: 18px;
+      border: solid 3px $primary;
+      border-radius: 9999px;
+      cursor: pointer;
     }
   }
 }
@@ -131,48 +117,140 @@ main {
   display: flex;
   height: 90%;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   .weather-data {
     display: flex;
-    flex-direction: column;
     height: 80%;
+    flex-direction: column;
+    flex: 1;
     margin: 2em;
     padding: 1.2em;
     color: $text;
     background-color: rgba($background, 0.75);
     border-radius: 1em;
+    backdrop-filter: blur(16px);
+    @include breakpoint(tablet, max) {
+      align-items: center;
+    }
   }
   .current {
-    width: 70%;
+    width: 80%;
+    flex: 2;
 
-    .location-container {
-      text-align: center;
+    .current-data-container {
       display: flex;
 
-      h2 {
-        color: $text;
-        font-size: 5rem;
+      .current-temp {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        p {
+          font-size: 4rem;
+          margin-bottom: 0px;
+          margin-top: 0;
+          font-weight: 800;
+          color: $text;
+          text-shadow: 3px 3px $accent;
+
+          &:nth-child(2) {
+            text-shadow: none;
+            color: rgba($accent, 0.9);
+            align-self: flex-end;
+            font-size: 2.4rem;
+            font-style: italic;
+            font-weight: 300;
+          }
+        }
       }
     }
 
-    .current-temp {
-      font-size: 4rem;
-      font-weight: 800;
-      color: $text;
+    .location-container {
+      display: flex;
+      border-bottom: solid 4px $primary;
+      margin-bottom: 2em;
+      justify-content: center;
 
-      text-shadow: 3px 3px $primary;
+      h2 {
+        color: $text;
+        margin: 0;
+        margin-bottom: 20px;
+        font-size: 4rem;
+      }
     }
 
     .current-condition {
-      height: 128px;
-      width: 128px;
+      justify-self: center;
+      height: 180px;
+      width: 180px;
+      @include breakpoint(tablet, max) {
+        height: 96px;
+        width: 96px;
+      }
     }
   }
 
   .forecast {
-    width: 30%;
+    width: 80%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    @include breakpoint(tablet, max) {
+      flex-direction: column;
+      overflow-y: scroll;
+    }
+
+    .forecast-day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 90%;
+      flex: 1;
+      font-size: 2rem;
+      border: solid 3px $primary;
+      border-radius: 18px;
+      padding: 8px;
+      @include breakpoint(tablet, max) {
+        width: 80%;
+        height: fit-content;
+      }
+
+      .temp-container {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        p {
+          font-size: 2rem;
+          margin-bottom: 0px;
+          margin-top: 0;
+          font-weight: 800;
+          color: $text;
+          text-shadow: 3px 3px $accent;
+
+          &:nth-child(2) {
+            text-shadow: none;
+            color: rgba($accent, 0.9);
+            align-self: flex-end;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 300;
+          }
+        }
+      }
+
+      p {
+        margin-bottom: 0;
+        margin-top: 10px;
+      }
+    }
   }
 }
