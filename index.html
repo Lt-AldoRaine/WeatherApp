@@ -29,12 +29,22 @@
         <div class="location-container">
           <h2 id="location-name"></h2>
         </div>
-        <div class="current-data-container">
-          <img class="current-condition" id="current-condition" />
+        <div class="current-data-container temp">
+          <div class="today-container">
+            <div class="current-time" id="current-time"></div>
+            <div class="current-date" id="current-date"></div>
+          </div>
+          <div class="current-condition" id="current-condition"></div>
+          <img class="condition-img" id="condition-img" />
           <div class="current-temp" id="current-temp">
             <p id="temp"></p>
-            <p id="feels-like"></p>
           </div>
+        </div>
+        <div class="current-data-container other">
+          <p id="feels-like"></p>
+          <div id="wind-speed"></div>
+          <div id="humidity"></div>
+          <div id="precip-chance"></div>
         </div>
       </div>
       <div class="weather-data forecast" id="forecast-data"></div>
