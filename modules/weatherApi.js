@@ -2,14 +2,18 @@ export const getFormInput = () => {
   const locationInput = document.getElementById("search-location");
   const locationName = locationInput.value.toLowerCase();
 
-  const regex = /^(.*?)(?:,\s*(.*))?$/;
+  const regex = /^(.*?)(?: \s*(.*))?$/;
   const match = locationName.match(regex);
 
   if (match) {
     const city = match[1].trim();
-    const region = match[2] ? match[2].trim() : "";
-    const formattedLocation = region ? `${city}, ${region}` : city;
+    let region = match[2] ? match[2].trim() : "";
 
+    if (region === "england".toLowerCase()) region = "United Kingdom";
+
+    const formattedLocation = region ? `${city} ${region}` : city;
+
+    console.log(formattedLocation);
     return formattedLocation;
   } else {
     console.log("Invalid input");
