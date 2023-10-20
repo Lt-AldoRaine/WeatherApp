@@ -1,24 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Cousine:700|Cousine:400");
-
-$text: #d4effc;
-$background: #03090c;
-$primary: #0a74a9;
-$secondary: #032435;
-$accent: #a64556;
-$breakpoints: (
-  tablet: 768px,
-  phone: 471px,
-);
-
-@mixin breakpoint($breakpoint, $direction) {
-  $breakpoint-value: map-get($breakpoints, $breakpoint);
-
-  @if $direction == max {
-    @media (max-width: ($breakpoint-value - 1)) {
-      @content;
-    }
-  }
-}
+@use "./globals" as *;
 
 * {
   margin: 0;
