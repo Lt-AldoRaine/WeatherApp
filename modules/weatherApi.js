@@ -8,13 +8,11 @@ export const getFormInput = () => {
   if (match) {
     const city = match[1].trim();
     let region = match[2] ? match[2].trim() : "";
+    let formattedLocation;
 
     if (region === "england".toLowerCase()) region = "United Kingdom";
 
-    const formattedLocation = region ? `${city} ${region}` : city;
-
-    console.log(formattedLocation);
-    return formattedLocation;
+    return (formattedLocation = region ? `${city} ${region}` : city);
   } else {
     console.log("Invalid input");
     return "";

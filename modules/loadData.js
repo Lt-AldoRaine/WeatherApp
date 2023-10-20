@@ -31,11 +31,22 @@ export async function getDayInfo(units, initialLoad = false) {
 
   try {
     const currentData = await weather.getWeatherData(url);
+    console.log(currentData);
 
     const currentDayInfo = {
       city: currentData.location.name,
       region: currentData.location.region,
       country: currentData.location.country,
+      // prettier-ignore
+      time: new Date(currentData.location.localtime).toLocaleTimeString("en-us"),
+      date: new Date(
+        currentData.forecast.forecastday[0].date,
+      ).toLocaleDateString("en-us", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
       condition: currentData.current.condition.text,
       condIcon: currentData.current.condition.icon,
       temp:
@@ -50,6 +61,7 @@ export async function getDayInfo(units, initialLoad = false) {
         currentData.forecast.forecastday[0].day.daily_chance_of_rain,
     };
 
+    console.log(currentDayInfo);
     return currentDayInfo;
   } catch (err) {
     console.error(err);
