@@ -50,15 +50,15 @@ main {
   align-items: center;
   flex-direction: column;
   @include breakpoint(tablet, max) {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: fit-content;
   }
 
   .weather-data {
     display: flex;
     flex-direction: column;
-    height: 80%;
     flex: 1;
+    height: 80%;
     margin: 2em;
     padding: 20px;
     color: $text;
@@ -73,7 +73,6 @@ main {
       grid-template-areas:
         "name name"
         "temp other";
-
       grid-template-rows: 0.2fr 1fr;
 
       .current-data-container {
@@ -131,76 +130,6 @@ main {
         @include breakpoint(tablet, max) {
           height: 64px;
           width: 64px;
-        }
-      }
-    }
-
-    &.forecast {
-      width: 80%;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      gap: 20px;
-      padding: 20px;
-      @include breakpoint(tablet, max) {
-        flex-direction: column;
-        flex: 2;
-      }
-
-      .forecast-day {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 90%;
-        flex: 1;
-        font-size: 2rem;
-        font-weight: bold;
-        border: solid 4px $primary;
-        border-radius: 18px;
-        padding: 8px;
-        @include breakpoint(tablet, max) {
-          width: 80%;
-          height: fit-content;
-          display: flex;
-          flex-direction: row;
-
-          img {
-            height: 48px;
-            width: 48px;
-          }
-        }
-
-        .temp-container {
-          display: flex;
-          flex-direction: column;
-          width: fit-content;
-          align-items: center;
-          gap: 8px;
-
-          p {
-            font-size: 2rem;
-            margin-bottom: 0px;
-            margin-top: 0;
-            font-weight: 800;
-            color: $text;
-            text-shadow: 3px 3px $accent;
-
-            &:last-child {
-              text-shadow: none;
-              color: rgba($accent, 0.9);
-              align-self: flex-end;
-              font-size: 1.2rem;
-              font-style: italic;
-              font-weight: 300;
-            }
-          }
-        }
-
-        p {
-          margin-bottom: 0;
-          margin-top: 10px;
         }
       }
     }

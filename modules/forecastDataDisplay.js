@@ -1,11 +1,14 @@
 import { getForecastInfo } from "./loadData";
+import chevronRight from "../img/chevron-right.png";
+import chevronDown from "../img/chevron-down.png";
 
 export default async function forecastDisplay(units, initialLoad = false) {
   const forecastContainer = document.getElementById("forecast-data");
+  const expandButton = document.getElementById("expand-forecast");
+  const chevron = document.getElementById("chevron");
 
   const forecastData = await getForecastInfo(units, initialLoad);
 
-  forecastContainer.innerHTML = "";
   forecastData.forEach((day) => {
     const forecastDay = document.createElement("div");
     const dayOfWeek = document.createElement("p");
@@ -24,13 +27,23 @@ export default async function forecastDisplay(units, initialLoad = false) {
     forecastDay.setAttribute("data-day", day.dayNum);
     tempContainer.classList.add("temp-container");
 
+    tempContainer.appendChild(dayCondition);
     tempContainer.appendChild(highTemp);
     tempContainer.appendChild(lowTemp);
 
     forecastDay.appendChild(dayOfWeek);
     forecastDay.appendChild(tempContainer);
-    forecastDay.appendChild(dayCondition);
 
     forecastContainer.appendChild(forecastDay);
+  });
+
+  expandButton.addEventListener("click", () => {
+    if (forecastContainer.classList.contains("hidden")) {
+      chevron.src = chevronDown;
+      forecastContainer.classList.remove("hidden");
+    } else {
+      forecastContainer.classList.add("hidden");
+      chevron.src = chevronRight;
+    }
   });
 }
