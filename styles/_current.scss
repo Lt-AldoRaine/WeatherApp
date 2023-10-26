@@ -1,0 +1,117 @@
+@use "globals" as *;
+
+.weather-data.current {
+  width: auto;
+  flex: 4;
+  height: fit-content;
+  display: grid;
+  grid-template-areas:
+    "name name"
+    "temp other";
+  grid-template-rows: 0.2fr 1fr;
+  @include breakpoint(tablet, max) {
+    flex: 0;
+    margin-bottom: 0;
+  }
+
+  .current-data-container {
+    display: flex;
+    justify-content: center;
+
+    &.temp {
+      flex-direction: column;
+      justify-content: center;
+      grid-area: temp;
+      gap: 2em;
+      width: fit-content;
+
+      #temp,
+      #current-condition {
+        font-size: 4rem;
+        @include breakpoint(tablet, max) {
+          font-size: 3.2rem;
+        }
+      }
+
+      .current-temp {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+      }
+
+      .condition-img {
+        display: flex;
+        align-items: center;
+        height: 96px;
+        width: 96px;
+        @include breakpoint(tablet, max) {
+          height: 64px;
+          width: 64px;
+        }
+      }
+    }
+
+    &.other {
+      display: flex;
+      justify-self: flex-end;
+      align-self: flex-start;
+      width: fit-content;
+      gap: 1.2em;
+      text-align: end;
+      flex-direction: column;
+      grid-area: other;
+    }
+
+    p {
+      font-size: 3.2rem;
+      margin-bottom: 0px;
+      margin-top: 0;
+      font-weight: 800;
+      color: $text;
+      text-shadow: 2px 2px $accent;
+      @include breakpoint(tablet, max) {
+        font-size: 2rem;
+      }
+
+      &.info {
+        font-size: 1.8rem;
+        font-style: italic;
+      }
+
+      &:nth-child(even) {
+        text-shadow: 2px 2px $primary;
+      }
+    }
+  }
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 4px $primary;
+  margin-bottom: 2em;
+  justify-content: center;
+  grid-area: name;
+
+  h2 {
+    color: $text;
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 4rem;
+    @include breakpoint(tablet, max) {
+      font-size: 3rem;
+    }
+  }
+
+  p {
+    font-size: 2rem;
+    margin-bottom: 0px;
+    margin-top: 0;
+    font-weight: 800;
+    color: $text;
+    text-shadow: 2px 2px $accent;
+    @include breakpoint(tablet, max) {
+      font-size: 1.6rem;
+    }
+  }
+}
