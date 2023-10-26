@@ -76,7 +76,6 @@ export async function getForecastInfo(units, initialLoad = false) {
     let forecastInfo = [];
 
     for (let i = 0; i < days.length; i++) {
-      console.log(days[i].date);
       const dayOfWeek = new Date(days[i].date).toLocaleDateString("en-us", {
         weekday: "long",
       });
