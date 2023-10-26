@@ -2,11 +2,11 @@
 
 nav {
   display: flex;
-  height: 10%;
-  width: 100%;
+  flex: 0.2;
   align-items: center;
   background: rgba($background, 0.75);
   backdrop-filter: blur(16px);
+  box-shadow: 0.2rem 0.2rem 1rem 0.75rem rgba(0, 0, 0, 0.75);
 
   .search-box,
   .temp-toggle-container {

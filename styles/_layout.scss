@@ -32,10 +32,12 @@ body {
   font-weight: 400;
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
   background-image: url("./img/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  @include breakpoint(tablet, max) {
+  @include breakpoint(phone, max) {
     background-image: url("./img/phone-background.jpg");
     background-size: cover;
   }
@@ -43,21 +45,16 @@ body {
 
 main {
   display: flex;
-  height: 90%;
-  width: 100%;
+  flex: 3;
   gap: 10px;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   @include breakpoint(tablet, max) {
-    overflow-y: auto;
-    height: fit-content;
+    flex-direction: column;
   }
 
   .weather-data {
     display: flex;
-    flex-direction: column;
-    flex: 1;
     height: 80%;
     margin: 2em;
     padding: 20px;
@@ -65,73 +62,6 @@ main {
     background-color: rgba($background, 0.75);
     border-radius: 1em;
     backdrop-filter: blur(16px);
-
-    &.current {
-      width: 80%;
-      flex: 2;
-      display: grid;
-      grid-template-areas:
-        "name name"
-        "temp other";
-      grid-template-rows: 0.2fr 1fr;
-
-      .current-data-container {
-        display: flex;
-
-        &.temp {
-          flex-direction: column;
-          grid-area: temp;
-
-          .current-temp {
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-          }
-        }
-
-        &.other {
-          display: flex;
-          grid-area: other;
-        }
-
-        p {
-          font-size: 3.4rem;
-          margin-bottom: 0px;
-          margin-top: 0;
-          font-weight: 800;
-          color: $text;
-          text-shadow: 3px 3px $accent;
-          @include breakpoint(tablet, max) {
-            font-size: 2.4rem;
-            text-shadow: 2px 2px $accent;
-          }
-        }
-      }
-
-      .location-container {
-        display: flex;
-        border-bottom: solid 4px $primary;
-        margin-bottom: 2em;
-        justify-content: center;
-        grid-area: name;
-
-        h2 {
-          color: $text;
-          margin: 0;
-          margin-bottom: 20px;
-          font-size: 4rem;
-        }
-      }
-
-      .condition-img {
-        justify-self: center;
-        height: 96px;
-        width: 96px;
-        @include breakpoint(tablet, max) {
-          height: 64px;
-          width: 64px;
-        }
-      }
-    }
+    box-shadow: 0.2rem 0.2rem 1rem 0.75rem rgba(0, 0, 0, 0.75);
   }
 }

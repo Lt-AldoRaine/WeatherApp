@@ -7,7 +7,7 @@ $secondary: #032435;
 $accent: #a64556;
 $breakpoints: (
   tablet: 768px,
-  phone: 471px,
+  phone: 473px,
 );
 
 @mixin breakpoint($breakpoint, $direction) {
