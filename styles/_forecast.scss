@@ -54,6 +54,7 @@
     padding: 8px;
     @include breakpoint(tablet, max) {
       height: fit-content;
+      flex-direction: row;
 
       img {
         height: 48px;
