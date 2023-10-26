@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TheWeather</title>
+    <script type="module" crossorigin src="/assets/index-241b6b1d.js"></script>
+    <link rel="stylesheet" href="/assets/index-c361386d.css">
+  </head>
+
+  <body>
+    <nav>
+      <div class="search-box" id="search-box">
+        <input
+          type="text"
+          name="location"
+          class="search-location"
+          id="search-location"
+          placeholder="Location"
+          autocomplete="off"
+        />
+      </div>
+      <div class="temp-toggle-container">
+        <div class="toggle-temp" id="toggle-temp">C</div>
+      </div>
+    </nav>
+
+    <main id="main">
+      <div class="weather-data current" id="current-data">
+        <div class="location-container">
+          <h2 id="location-name"></h2>
+          <p class="current-date" id="current-date"></p>
+          <p class="current-time" id="current-time"></p>
+        </div>
+        <div class="current-data-container temp">
+          <div>
+            <p id="current-condition"></p>
+          </div>
+          <div>
+            <img class="condition-img" id="condition-img" />
+            <p id="temp"></p>
+          </div>
+        </div>
+        <div class="current-data-container other">
+          <div>
+            <p class="info">Feels Like</p>
+            <p id="feels-like"></p>
+          </div>
+          <div>
+            <p class="info">Wind Speed</p>
+            <p id="wind-speed"></p>
+          </div>
+          <div>
+            <p class="info">Humidity</p>
+            <p id="humidity"></p>
+          </div>
+          <div>
+            <p class="info">Chance of Rain</p>
+            <p id="precip-chance"></p>
+          </div>
+        </div>
+      </div>
+      <!-- prettier-ignore -->
+      <button type="button" class="weather-data expand-forecast" id="expand-forecast">
+        <img class="chevron" id="chevron" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAtklEQVRIS+2SXQ2AMAyEmQOkIAEcgDKCAqSABCQgAQn0kpGM0a0ry962pOGvva9ca5rCxxTWbypAdLhalGVRR9UzxURxBZRam7PQ9eByYjPYqKC3hQMDgfhKMVLsFMj5nBgAAoDgT9CdC3HF/W8viLRFHAQCT+dRcSRKAOT4kNPaIoqnAnwInpPENQAXgntu6NyMkyxyC2EXTmhtVVvEdqR9mTJkraZqTbPEtUP+BasWibYVt+gGW38fGfbvqxEAAAAASUVORK5CYII=" />
+      </button>
+      <div class="weather-data forecast" id="forecast-data"></div>
+    </main>
+    
+  </body>
+</html>
