@@ -31,6 +31,10 @@ nav {
       border: solid 2px $primary;
       border-radius: 18px;
 
+      &::placeholder {
+        color: $text;
+      }
+
       &:focus {
         outline: none;
         background-color: rgba($background, 0.6);

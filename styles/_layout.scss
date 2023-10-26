@@ -34,11 +34,11 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
-  background-image: url("./img/background.jpg");
+  background-image: url("../resources/img/background.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   @include breakpoint(phone, max) {
-    background-image: url("./img/phone-background.jpg");
+    background-image: url("../resources/img/phone-background.jpg");
     background-size: cover;
   }
 }
