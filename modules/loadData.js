@@ -32,8 +32,6 @@ export async function getDayInfo(units, initialLoad = false) {
   try {
     const currentData = await weather.getWeatherData(url);
 
-    console.log(currentData);
-
     const currentDayInfo = {
       city: currentData.location.name,
       region: currentData.location.region,
@@ -75,7 +73,6 @@ export async function getForecastInfo(units, initialLoad = false) {
   try {
     const forecastData = await weather.getWeatherData(url);
     const days = forecastData.forecast.forecastday;
-    console.log(days);
     let forecastInfo = [];
 
     for (let i = 0; i < days.length; i++) {

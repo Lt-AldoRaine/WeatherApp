@@ -1,6 +1,6 @@
 import { getForecastInfo } from "./loadData";
-import chevronRight from "../img/chevron-right.png";
-import chevronDown from "../img/chevron-down.png";
+import chevronRight from "../resources/img/chevron-right.png";
+import chevronDown from "../resources/img/chevron-down.png";
 
 export default async function forecastDisplay(units, initialLoad = false) {
   const forecastContainer = document.getElementById("forecast-data");

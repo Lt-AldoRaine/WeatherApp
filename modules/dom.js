@@ -32,7 +32,6 @@ export default function dom() {
 
   window.addEventListener("resize", () => {
     if (screen.width >= 473) {
-      console.log("joe");
       forecastContainer.classList.remove("hidden");
     }
   });
