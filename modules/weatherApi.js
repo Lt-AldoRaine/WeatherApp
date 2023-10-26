@@ -27,7 +27,7 @@ export function getRequestUrl(location) {
 
 export async function getWeatherData(url) {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, { mode: "cors" });
     const weatherData = await response.json();
 
     return weatherData;
