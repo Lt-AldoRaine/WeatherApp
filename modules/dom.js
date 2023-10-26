@@ -4,6 +4,7 @@ import forecastDisplay from "./forecastDataDisplay";
 export default function dom() {
   const searchBox = document.getElementById("search-location");
   const tempToggle = document.getElementById("toggle-temp");
+  const forecastContainer = document.getElementById("forecast-data");
 
   let units = "C";
 
@@ -27,5 +28,12 @@ export default function dom() {
     }
     dayDisplay(units);
     forecastDisplay(units);
+  });
+
+  window.addEventListener("resize", () => {
+    if (screen.width >= 473) {
+      console.log("joe");
+      forecastContainer.classList.remove("hidden");
+    }
   });
 }

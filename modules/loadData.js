@@ -31,6 +31,7 @@ export async function getDayInfo(units, initialLoad = false) {
 
   try {
     const currentData = await weather.getWeatherData(url);
+
     console.log(currentData);
 
     const currentDayInfo = {
@@ -38,15 +39,16 @@ export async function getDayInfo(units, initialLoad = false) {
       region: currentData.location.region,
       country: currentData.location.country,
       // prettier-ignore
-      time: new Date(currentData.location.localtime).toLocaleTimeString("en-us"),
-      date: new Date(
-        currentData.forecast.forecastday[0].date,
-      ).toLocaleDateString("en-us", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
+      time: new Date(currentData.location.localtime).toLocaleTimeString("en-us", { "hour": "2-digit", "minute": "2-digit" }),
+      date: new Date(currentData.location.localtime).toLocaleDateString(
+        "en-us",
+        {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+      ),
       condition: currentData.current.condition.text,
       condIcon: currentData.current.condition.icon,
       temp:
@@ -61,7 +63,6 @@ export async function getDayInfo(units, initialLoad = false) {
         currentData.forecast.forecastday[0].day.daily_chance_of_rain,
     };
 
-    console.log(currentDayInfo);
     return currentDayInfo;
   } catch (err) {
     console.error(err);
@@ -74,9 +75,11 @@ export async function getForecastInfo(units, initialLoad = false) {
   try {
     const forecastData = await weather.getWeatherData(url);
     const days = forecastData.forecast.forecastday;
+    console.log(days);
     let forecastInfo = [];
 
     for (let i = 0; i < days.length; i++) {
+      console.log(days[i].date);
       const dayOfWeek = new Date(days[i].date).toLocaleDateString("en-us", {
         weekday: "long",
       });
@@ -97,7 +100,7 @@ export async function getForecastInfo(units, initialLoad = false) {
       forecastInfo.push(dayInfo);
     }
 
-    return forecastInfo.sort((a, b) => a.dayNum - b.dayNum);
+    return forecastInfo;
   } catch (err) {
     console.error(err);
   }

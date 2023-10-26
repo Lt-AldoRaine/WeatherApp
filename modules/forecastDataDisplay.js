@@ -9,6 +9,7 @@ export default async function forecastDisplay(units, initialLoad = false) {
 
   const forecastData = await getForecastInfo(units, initialLoad);
 
+  forecastContainer.innerHTML = "";
   forecastData.forEach((day) => {
     const forecastDay = document.createElement("div");
     const dayOfWeek = document.createElement("p");
@@ -27,11 +28,11 @@ export default async function forecastDisplay(units, initialLoad = false) {
     forecastDay.setAttribute("data-day", day.dayNum);
     tempContainer.classList.add("temp-container");
 
-    tempContainer.appendChild(dayCondition);
     tempContainer.appendChild(highTemp);
     tempContainer.appendChild(lowTemp);
 
     forecastDay.appendChild(dayOfWeek);
+    forecastDay.appendChild(dayCondition);
     forecastDay.appendChild(tempContainer);
 
     forecastContainer.appendChild(forecastDay);

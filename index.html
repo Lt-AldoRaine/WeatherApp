@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,29 +24,45 @@
       </div>
     </nav>
 
-    <main>
+    <main id="main">
       <div class="weather-data current" id="current-data">
         <div class="location-container">
           <h2 id="location-name"></h2>
+          <p class="current-date" id="current-date"></p>
+          <p class="current-time" id="current-time"></p>
         </div>
         <div class="current-data-container temp">
-          <div class="today-container">
-            <div class="current-time" id="current-time"></div>
-            <div class="current-date" id="current-date"></div>
+          <div>
+            <p id="current-condition"></p>
           </div>
-          <div class="current-condition" id="current-condition"></div>
-          <img class="condition-img" id="condition-img" />
-          <div class="current-temp" id="current-temp">
+          <div>
+            <img class="condition-img" id="condition-img" />
             <p id="temp"></p>
           </div>
         </div>
         <div class="current-data-container other">
-          <p id="feels-like"></p>
-          <div id="wind-speed"></div>
-          <div id="humidity"></div>
-          <div id="precip-chance"></div>
+          <div>
+            <p class="info">Feels Like</p>
+            <p id="feels-like"></p>
+          </div>
+          <div>
+            <p class="info">Wind Speed</p>
+            <p id="wind-speed"></p>
+          </div>
+          <div>
+            <p class="info">Humidity</p>
+            <p id="humidity"></p>
+          </div>
+          <div>
+            <p class="info">Chance of Rain</p>
+            <p id="precip-chance"></p>
+          </div>
         </div>
       </div>
+      <!-- prettier-ignore -->
+      <button type="button" class="weather-data expand-forecast" id="expand-forecast">
+        <img class="chevron" id="chevron" src="./img/chevron-down.png" />
+      </button>
       <div class="weather-data forecast" id="forecast-data"></div>
     </main>
     <script type="module" src="/main.js"></script>
