@@ -22,7 +22,7 @@ export const getFormInput = () => {
 export function getRequestUrl(location) {
   // prettier-ignore
   return `https://api.weatherapi.com/v1/forecast.json?key=${
-    import.meta.env.VITE_WEATHER_API_KEY}&q="${location}"&days=7`;
+    import.meta.env.VITE_API_KEY}&q="${location}"&days=7`;
 }
 
 export async function getWeatherData(url) {
