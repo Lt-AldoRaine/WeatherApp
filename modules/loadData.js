@@ -36,8 +36,10 @@ export async function getDayInfo(units, initialLoad = false) {
       city: currentData.location.name,
       region: currentData.location.region,
       country: currentData.location.country,
-      // prettier-ignore
-      time: new Date(currentData.location.localtime).toLocaleTimeString("en-us", { "hour": "2-digit", "minute": "2-digit" }),
+      time: new Date(currentData.location.localtime).toLocaleTimeString(
+        "en-us",
+        { hour: "2-digit", minute: "2-digit", hour12: false },
+      ),
       date: new Date(currentData.location.localtime).toLocaleDateString(
         "en-us",
         {

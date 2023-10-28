@@ -31,6 +31,7 @@
 .weather-data.forecast {
   display: flex;
   flex: 1;
+  height: fit-content;
   width: 80%;
   gap: 20px;
   flex-direction: column;
