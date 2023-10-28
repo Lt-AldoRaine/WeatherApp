@@ -1,11 +1,7 @@
 import { getForecastInfo } from "./loadData";
-import chevronRight from "../resources/img/chevron-right.png";
-import chevronDown from "../resources/img/chevron-down.png";
 
 export default async function forecastDisplay(units, initialLoad = false) {
   const forecastContainer = document.getElementById("forecast-data");
-  const expandButton = document.getElementById("expand-forecast");
-  const chevron = document.getElementById("chevron");
 
   try {
     const forecastData = await getForecastInfo(units, initialLoad);
@@ -40,17 +36,6 @@ export default async function forecastDisplay(units, initialLoad = false) {
 
       forecastContainer.appendChild(forecastDay);
     });
-
-    expandButton.addEventListener("click", () => {
-      if (forecastContainer.classList.contains("hidden")) {
-        chevron.src = chevronDown;
-        forecastContainer.classList.remove("hidden");
-      } else {
-        forecastContainer.classList.add("hidden");
-        chevron.src = chevronRight;
-      }
-    });
-    forecastContainer.classList.remove("hidden");
   } catch (err) {
     forecastContainer.classList.add("hidden");
   }

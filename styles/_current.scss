@@ -109,7 +109,6 @@
     margin-top: 0;
     font-weight: 800;
     color: $text;
-    text-shadow: 2px 2px $accent;
     @include breakpoint(tablet, max) {
       font-size: 1.6rem;
     }

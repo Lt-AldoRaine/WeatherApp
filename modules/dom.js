@@ -1,5 +1,7 @@
 import dayDisplay from "./dayDataDisplay";
 import forecastDisplay from "./forecastDataDisplay";
+import chevronRight from "../resources/img/chevron-right.png";
+import chevronDown from "../resources/img/chevron-down.png";
 
 const loadDisplay = (units, initLoad) => {
   const day = dayDisplay(units, initLoad);
@@ -10,12 +12,15 @@ const loadDisplay = (units, initLoad) => {
   return data;
 };
 
-export default async function dom() {
+export default function dom() {
   const searchBox = document.getElementById("search-location");
   const tempToggle = document.getElementById("toggle-temp");
   const forecastContainer = document.getElementById("forecast-data");
+  const expandButton = document.getElementById("expand-forecast");
+  const chevron = document.getElementById("chevron");
 
   let units = "C";
+  let minimized = false;
 
   loadDisplay(units, true);
 
@@ -33,8 +38,25 @@ export default async function dom() {
       tempToggle.innerText = "C";
       units = "C";
     }
+
     loadDisplay(units);
   });
+
+  expandButton.addEventListener("click", () => {
+    if (forecastContainer.classList.contains("hidden")) {
+      chevron.src = chevronDown;
+      forecastContainer.classList.remove("hidden");
+      minimized = false;
+    } else {
+      forecastContainer.classList.add("hidden");
+      chevron.src = chevronRight;
+      minimized = true;
+    }
+  });
+
+  minimized
+    ? forecastContainer.classList.add("hidden")
+    : forecastContainer.classList.remove("hidden");
 
   window.addEventListener("resize", () => {
     if (screen.width >= 473) {
