@@ -1,11 +1,5 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
-  const apiKey = `${env.VITE_API_KEY ?? ""}`;
-
-  return {
-    apiKey,
-    base: "/weather-app/",
-  };
+export default defineConfig({
+  base: "/weather-app/",
 });
