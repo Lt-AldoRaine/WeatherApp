@@ -7,44 +7,51 @@ export default async function forecastDisplay(units, initialLoad = false) {
   const expandButton = document.getElementById("expand-forecast");
   const chevron = document.getElementById("chevron");
 
-  const forecastData = await getForecastInfo(units, initialLoad);
+  try {
+    const forecastData = await getForecastInfo(units, initialLoad);
 
-  forecastContainer.innerHTML = "";
-  forecastData.forEach((day) => {
-    const forecastDay = document.createElement("div");
-    const dayOfWeek = document.createElement("p");
-    const tempContainer = document.createElement("div");
-    const highTemp = document.createElement("p");
-    const lowTemp = document.createElement("p");
-    const dayCondition = document.createElement("img");
+    forecastContainer.innerHTML = "";
 
-    dayCondition.src = day.conditionIcon;
-    // prettier-ignore
-    highTemp.innerText = units === "C" ? `${day.maxTemp}°C` : `${day.maxTemp}°F`;
-    lowTemp.innerText = units === "C" ? `${day.minTemp}°C` : `${day.minTemp}°F`;
-    dayOfWeek.innerText = day.dayOfWeek;
+    forecastData.forEach((day) => {
+      const forecastDay = document.createElement("div");
+      const dayOfWeek = document.createElement("p");
+      const tempContainer = document.createElement("div");
+      const highTemp = document.createElement("p");
+      const lowTemp = document.createElement("p");
+      const dayCondition = document.createElement("img");
 
-    forecastDay.classList.add("forecast-day");
-    forecastDay.setAttribute("data-day", day.dayNum);
-    tempContainer.classList.add("temp-container");
+      dayCondition.src = day.conditionIcon;
+      // prettier-ignore
+      highTemp.innerText = units === "C" ? `${day.maxTemp}°C` : `${day.maxTemp}°F`;
+      lowTemp.innerText =
+        units === "C" ? `${day.minTemp}°C` : `${day.minTemp}°F`;
+      dayOfWeek.innerText = day.dayOfWeek;
 
-    tempContainer.appendChild(highTemp);
-    tempContainer.appendChild(lowTemp);
+      forecastDay.classList.add("forecast-day");
+      forecastDay.setAttribute("data-day", day.dayNum);
+      tempContainer.classList.add("temp-container");
 
-    forecastDay.appendChild(dayOfWeek);
-    forecastDay.appendChild(dayCondition);
-    forecastDay.appendChild(tempContainer);
+      tempContainer.appendChild(highTemp);
+      tempContainer.appendChild(lowTemp);
 
-    forecastContainer.appendChild(forecastDay);
-  });
+      forecastDay.appendChild(dayOfWeek);
+      forecastDay.appendChild(dayCondition);
+      forecastDay.appendChild(tempContainer);
 
-  expandButton.addEventListener("click", () => {
-    if (forecastContainer.classList.contains("hidden")) {
-      chevron.src = chevronDown;
-      forecastContainer.classList.remove("hidden");
-    } else {
-      forecastContainer.classList.add("hidden");
-      chevron.src = chevronRight;
-    }
-  });
+      forecastContainer.appendChild(forecastDay);
+    });
+
+    expandButton.addEventListener("click", () => {
+      if (forecastContainer.classList.contains("hidden")) {
+        chevron.src = chevronDown;
+        forecastContainer.classList.remove("hidden");
+      } else {
+        forecastContainer.classList.add("hidden");
+        chevron.src = chevronRight;
+      }
+    });
+    forecastContainer.style.display = "flex";
+  } catch (err) {
+    forecastContainer.style.display = "none";
+  }
 }

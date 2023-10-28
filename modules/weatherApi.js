@@ -19,6 +19,16 @@ export const getFormInput = () => {
   }
 };
 
+const handleSearchError = (err = true) => {
+  const errorMsg = document.getElementById("error-msg");
+
+  if (err) {
+    errorMsg.classList.remove("hidden");
+  } else {
+    errorMsg.classList.add("hidden");
+  }
+};
+
 export function getRequestUrl(location) {
   // prettier-ignore
   return `https://api.weatherapi.com/v1/forecast.json?key=${
@@ -26,12 +36,13 @@ export function getRequestUrl(location) {
 }
 
 export async function getWeatherData(url) {
-  try {
-    const response = await fetch(url, { mode: "cors" });
-    const weatherData = await response.json();
+  const response = await fetch(url, { mode: "cors" });
+  const weatherData = await response.json();
 
+  if (response.status === 400) {
+    handleSearchError();
+  } else {
+    handleSearchError(false);
     return weatherData;
-  } catch (err) {
-    console.error(err);
   }
 }

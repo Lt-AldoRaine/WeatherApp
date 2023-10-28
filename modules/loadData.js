@@ -63,7 +63,7 @@ export async function getDayInfo(units, initialLoad = false) {
 
     return currentDayInfo;
   } catch (err) {
-    console.error(err);
+    return;
   }
 }
 
@@ -72,8 +72,10 @@ export async function getForecastInfo(units, initialLoad = false) {
 
   try {
     const forecastData = await weather.getWeatherData(url);
+
     const days = forecastData.forecast.forecastday;
     let forecastInfo = [];
+    let prevForecast = [];
 
     for (let i = 0; i < days.length; i++) {
       const dayOfWeek = new Date(days[i].date).toLocaleDateString("en-us", {
@@ -94,10 +96,11 @@ export async function getForecastInfo(units, initialLoad = false) {
       };
 
       forecastInfo.push(dayInfo);
+      prevForecast = forecastInfo;
     }
 
-    return forecastInfo;
+    return !forecastInfo ? prevForecast : forecastInfo;
   } catch (err) {
-    console.error(err);
+    return;
   }
 }

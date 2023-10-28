@@ -1,20 +1,27 @@
 import dayDisplay from "./dayDataDisplay";
 import forecastDisplay from "./forecastDataDisplay";
 
-export default function dom() {
+const loadDisplay = (units, initLoad) => {
+  const day = dayDisplay(units, initLoad);
+  const forecast = forecastDisplay(units, initLoad);
+
+  const data = [day, forecast];
+
+  return data;
+};
+
+export default async function dom() {
   const searchBox = document.getElementById("search-location");
   const tempToggle = document.getElementById("toggle-temp");
   const forecastContainer = document.getElementById("forecast-data");
 
   let units = "C";
 
-  dayDisplay(units, true);
-  forecastDisplay(units, true);
+  loadDisplay(units, true);
 
   searchBox.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      dayDisplay(units);
-      forecastDisplay(units);
+      loadDisplay(units);
     }
   });
 
@@ -26,8 +33,7 @@ export default function dom() {
       tempToggle.innerText = "C";
       units = "C";
     }
-    dayDisplay(units);
-    forecastDisplay(units);
+    loadDisplay(units);
   });
 
   window.addEventListener("resize", () => {
