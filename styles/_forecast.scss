@@ -4,6 +4,7 @@
   display: none;
 
   @include breakpoint(tablet, max) {
+    cursor: pointer;
     width: calc(80% + 40px);
     margin: 0;
     margin-bottom: 8px;

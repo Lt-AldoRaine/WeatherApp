@@ -50,8 +50,8 @@ export default async function forecastDisplay(units, initialLoad = false) {
         chevron.src = chevronRight;
       }
     });
-    forecastContainer.style.display = "flex";
+    forecastContainer.classList.remove("hidden");
   } catch (err) {
-    forecastContainer.style.display = "none";
+    forecastContainer.classList.add("hidden");
   }
 }
