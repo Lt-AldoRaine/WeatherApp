@@ -28,7 +28,7 @@ nav {
     .error-msg {
       color: $accent;
       position: absolute;
-      top: 90px;
+      top: 75%;
       font-size: 1.4rem;
 
       @include keyframes(fade-in) {
