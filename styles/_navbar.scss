@@ -78,13 +78,15 @@ nav {
     align-items: center;
 
     .toggle-temp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       height: 1em;
       width: 1em;
       padding: 5px;
       color: $accent;
       font-size: 4rem;
       font-weight: bold;
-      text-align: center;
       background-color: transparent;
       border: solid 3px $primary;
       border-radius: 9999px;
